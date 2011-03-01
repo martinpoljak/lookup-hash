@@ -4,14 +4,15 @@ Lookup Hash
 **lookup-hash** is intended for using as fast lookup table for simply 
 checking of existency of some item inside. It doesn't bring any 
 additional performance, it's defacto only [Hash][1] with booleans, 
-but it's better to write:
+but it's better and more readable to write:
 
     require "lookup-hash"
     allowed = LookupHash[:alfa, :beta]
 
 …than:
 
-   allowed = Hash[:alfa, true, :beta, true]
+    require "lookup-hash"
+    allowed = Hash[:alfa, true, :beta, true]
    
 Other methods are equivalent to +Hash+ with exception of data assignment
 methods which convert all values to booleans. New key it's possible to 
