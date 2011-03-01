@@ -1,17 +1,17 @@
 # encoding: utf-8
 # (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
 
-require "hash-utils/hash"
+require "hash-utils/hash" # 0.11.0
 require "hash-utils/object"
 
 ##
 # Hash intended for using as fast lookup table for simply checking of an 
 # existency of some item. It doesn't bring any additional performance,
 # it's defacto only Hash with Booleans, but it's better write:
-#   CONST = LookupHash[:alfa, :beta]
+#   allowed = LookupHash[:alfa, :beta]
 #
 # than:
-#   CONST = Hash[:alfa, true, :beta, true]
+#   allowed = Hash[:alfa, true, :beta, true]
 #
 
 class LookupHash < Hash
@@ -32,7 +32,10 @@ class LookupHash < Hash
             new << [i, true]
         end
         
-        super(new)
+        result = super(new)
+        result.default = false
+        
+        return result
     end
     
     ##
@@ -46,12 +49,13 @@ class LookupHash < Hash
     # responsibility to store the value in the hash if required.
     #
     # @note All values will be converted using +hash-utils+ Hash#to_b 
-    #   to Boolean in the {LookupHash}.
+    #   to Boolean in the {LookupHash}. Assigning of default value block
+    #   isn't allowed.
     # @see http://ruby-doc.org/core/classes/Hash.html#M000718
     #
 
-    def initialize(*args)
-        super(*args)
+    def initialize
+        super(false)
         self.map_values! { |v| v.to_b }
     end
 
@@ -69,7 +73,49 @@ class LookupHash < Hash
     def []=(key, value)
         super(key, value.to_b)
     end
+    
+    ##
+    # Replaces the contents of Hash with the contents of +other_hash+.
+    #
+    # @note Value will be converted using +hash-utils+ Hash#to_b 
+    #   to Boolean in the {LookupHash}.
+    # @see http://ruby-doc.org/core/classes/Hash.html#M000757
+    #
+    
+    def replace(other_hash)
+        super(other_hash.map_values { |v| v.to_b })
+    end
+    
+    ##
+    # Adds key to lookup hash.
+    # @param [Object] key key for add
+    #
+    
+    def <<(key)
+        self[key] = true
+    end
+    
+    alias :add :<<
+    
+    ##
+    # Bans set the default value.
+    #
+    
+    def default=
+    end
+    
+    ##
+    # Bans set the default value.
+    #
+    
+    def default=(value)
+        super(false)
+    end
+    
+    ##
+    # Bans set the default block.
+    #
+    
+    def default_proc=(value)
+    end
 end
-
-
-p LookupHash[:alfa, :beta]
