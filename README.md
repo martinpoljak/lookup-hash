@@ -2,9 +2,9 @@ Lookup Hash
 ===========
 
 **lookup-hash** is intended for using as fast lookup table for simply 
-checking of an existency of some item. It doesn't bring any additional 
-performance, it's defacto only [Hash][1] with booleans, but it's
-better to write:
+checking of existency of some item inside. It doesn't bring any 
+additional performance, it's defacto only [Hash][1] with booleans, 
+but it's better to write:
 
     require "lookup-hash"
     allowed = LookupHash[:alfa, :beta]
@@ -14,8 +14,8 @@ better to write:
    allowed = Hash[:alfa, true, :beta, true]
    
 Other methods are equivalent to +Hash+ with exception of data assignment
-methods which convert all values to booleans. New key is possible to add
-also by:
+methods which convert all values to booleans. New key it's possible to 
+add also by:
 
     hash << :key    # …or…
     hash.add(:key)
