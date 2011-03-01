@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "lookup-hash"
   gem.homepage = "http://github.com/martinkozak/lookup-hash"
   gem.license = "MIT"
-  gem.summary = 'Hash intended for using as lookup table only for simply checking of existency of some item (key) inside.'
+  gem.summary = 'Hash intended for using as lookup table only for simple checking of existency of some item (key) inside.'
   gem.email = "martinkozak@martinkozak.net"
   gem.authors = ["Martin Kozák"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

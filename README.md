@@ -1,7 +1,7 @@
 Lookup Hash
 ===========
 
-**lookup-hash** is intended for using as fast lookup table for simply 
+**lookup-hash** is intended for using as fast lookup table for simple
 checking of existency of some item inside. It doesn't bring any 
 additional performance, it's defacto only [Hash][1] with booleans, 
 but it's better and more readable to write:
