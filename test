@@ -1,0 +1,43 @@
+#!/usr/bin/ruby
+# encoding: utf-8
+# (c) 2011 Martin Kozák (martinkozak@martinkozak.net)
+
+$:.push("./lib")
+require "lookup-hash"
+require "riot"
+
+context "LookupHash" do
+    setup do 
+        LookupHash[:alfa, :beta]
+    end
+    
+    asserts("#[] (static)") do
+        topic == {:alfa => true, :beta => true} 
+    end
+    asserts("#<<") do
+        hash = topic.dup
+        hash << :gama
+        hash == {:alfa => true, :beta => true, :gama => true}
+    end
+    asserts("#[]=") do
+        hash = topic.dup
+        hash[:gama] = "something"
+        hash == {:alfa => true, :beta => true, :gama => true}
+    end
+    asserts("#default=") do
+        topic.default = "something"
+        topic.default == false
+    end
+    asserts("#default_proc=") do
+        topic.default_proc = "something"
+        topic.default_proc.nil?
+    end        
+    asserts("#replace") do
+        hash = topic.dup
+        hash.replace(:alfa => "alfa", :beta => nil)
+        hash == {:alfa => true, :beta => false}
+    end
+    asserts("default value") do
+        topic[:gama] == false
+    end
+end
