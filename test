@@ -4,6 +4,7 @@
 
 $:.push("./lib")
 require "lookup-hash"
+require "lookup-hash/frozen"
 require "riot"
 
 context "LookupHash" do
@@ -39,5 +40,22 @@ context "LookupHash" do
     end
     asserts("default value") do
         topic[:gama] == false
+    end
+end
+
+context "Frozen::LookupHash" do
+    setup do 
+        Frozen::LookupHash[:alfa, :beta]
+    end
+   
+    asserts("non-frozen class object equivalence") do
+        topic == LookupHash[:alfa, :beta]
+    end
+    asserts("frozen state") do
+        begin
+            topic.replace({:c => :d})
+        rescue RuntimeError => e
+            true
+        end
     end
 end

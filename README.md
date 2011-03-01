@@ -14,12 +14,15 @@ but it's better and more readable to write:
     require "lookup-hash"
     allowed = Hash[:alfa, true, :beta, true]
    
-Other methods are equivalent to +Hash+ with exception of data assignment
+Other methods are equivalent to `Hash` with exception of data assignment
 methods which convert all values to booleans. New key it's possible to 
 add also by:
 
     hash << :key    # …or…
     hash.add(:key)
+    
+*Implicitly frozen* lookup hash is available as `Frozen::LookupHash`
+in `lookup-hash/frozen`.
 
 Contributing
 ------------
