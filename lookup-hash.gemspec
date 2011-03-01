@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{lookup-hash}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Martin Kozák"]
@@ -24,13 +24,15 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/lookup-hash.rb",
+    "lib/lookup-hash/frozen.rb",
+    "lookup-hash.gemspec",
     "test"
   ]
   s.homepage = %q{http://github.com/martinkozak/lookup-hash}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.5.3}
-  s.summary = %q{Hash intended for using as lookup table only for simply checking of existency of some item (key) inside.}
+  s.summary = %q{Hash intended for using as lookup table only for simple checking of existency of some item (key) inside.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
