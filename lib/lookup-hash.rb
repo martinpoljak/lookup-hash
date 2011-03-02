@@ -15,6 +15,7 @@ require "hash-utils/object"
 #
 
 class LookupHash < Hash
+
     ##
     # Creates lookup hash. Expects key names as input. If array given,
     # treat it as just array of keys.
@@ -118,4 +119,5 @@ class LookupHash < Hash
     
     def default_proc=(value)
     end
+    
 end

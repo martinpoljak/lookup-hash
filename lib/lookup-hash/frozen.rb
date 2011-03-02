@@ -4,24 +4,33 @@
 require "lookup-hash"
 
 ##
-# Hash intended for using as fast lookup table for simply checking of an 
-# existency of some item. It doesn't bring any additional performance,
-# it's defacto only Hash with Booleans, but it's better to write:
-#
-#   class Foo
-#       CONST = Frozen::LookupHash[:alfa, :beta]
-#   end
-#
-# than:
-#   class Foo
-#       CONST = Hash[:alfa, true, :beta, true].freeze
-#   end
-#
-# Implicitly frozen for use in class constants.
+# Implicitly frozen objects.
+# @since 0.2.0
 #
 
 module Frozen
+
+    ##
+    # Hash intended for using as fast lookup table for simply checking of an 
+    # existency of some item. It doesn't bring any additional performance,
+    # it's defacto only Hash with Booleans, but it's better to write:
+    #
+    #   class Foo
+    #       CONST = Frozen::LookupHash[:alfa, :beta]
+    #   end
+    #
+    # than:
+    #   class Foo
+    #       CONST = Hash[:alfa, true, :beta, true].freeze
+    #   end
+    #
+    # Implicitly frozen for use in class constants.
+    #
+    # @since 0.2.0
+    #
+
     class LookupHash < ::LookupHash
+    
         ##
         # Creates lookup hash. Expects key names as input. If array given,
         # treat it as just array of keys.
@@ -54,5 +63,6 @@ module Frozen
             super
             self.freeze
         end
+        
     end
 end
